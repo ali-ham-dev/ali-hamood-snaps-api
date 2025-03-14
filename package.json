@@ -1,0 +1,17 @@
+{
+  "name": "ali-hamood-snaps-api",
+  "version": "1.0.0",
+  "description": "Backend API serving photos and user comments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ali-hamood",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.3",
+    "express": "^4.21.2",
+    "react": "^19.0.0",
+    "uuid": "^11.1.0"
+  }
+}
