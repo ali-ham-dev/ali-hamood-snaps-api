@@ -13,8 +13,8 @@ const tagsRouter = express.Router();
 const tags = await getTags('./data/tags.json');
 
 tagsRouter.get('/', (req, res) => {
-    if (tags === null) {
-        res.status(404);
+    if (tags == null) {
+        res.status(404).send('Tags not found.');
         return;
     }
 
