@@ -12,6 +12,12 @@ const getPhotos = async (filePath) => {
 const photosRouter = express.Router();
 const photos = await getPhotos('./data/photos.json');  
 
+photosRouter.get('/:photoId', (req, res) => {
+    const photoPath = `${process.env.PROJECT_PATH}/public/images/${req.params.photoId}`;
+    console.log(photoPath);
+    res.sendFile(photoPath);
+});
+
 photosRouter.get('/', (req, res) => {
     if (photos == null) {
         res.status(404).send('Photos not found');
