@@ -92,6 +92,7 @@ photosRouter.post('/:photoId/comments', (req, res) => {
 
         photo.comments.push(comment);
         photos[photoIndex] = photo;
+        savePhotosJson('./data/photos.json');
 
         res.status(201).send(comment);
     } catch (error) {
