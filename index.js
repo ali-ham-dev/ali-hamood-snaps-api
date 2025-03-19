@@ -3,6 +3,7 @@ import tagsRouter from './routes/tags.js';
 import photosRouter from './routes/photos.js';
 
 const app = express();
+app.use(express.json());
 app.use('/tags', tagsRouter);
 app.use('/photos', photosRouter);
 
