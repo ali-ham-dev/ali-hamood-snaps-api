@@ -1,8 +1,18 @@
 import express from 'express';
-import { readFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import { v4 as uuid4 } from 'uuid';
 
-const getPhotos = async (filePath) => {
+const photosRouter = express.Router();
+
+const savePhotosJson = async (filePath) => {
+    try {
+        await writeFile(filePath, JSON.stringify(photos), 'utf8');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const getPhotosJson = async (filePath) => {
     try {
         return JSON.parse(await readFile(filePath, 'utf8'));
     } catch (error) {
@@ -10,8 +20,9 @@ const getPhotos = async (filePath) => {
     }
 }
 
-const photosRouter = express.Router();
-const photos = await getPhotos('./data/photos.json');  
+const photos = await getPhotosJson('./data/photos.json');  
+
+// Routes
 
 photosRouter.get('/public/:photoFileName', (req, res) => {
     try {
