@@ -20,11 +20,11 @@ const getPhotosJson = async (filePath) => {
     }
 }
 
-const photos = await getPhotosJson('./data/photos.json');  
+const photos = await getPhotosJson(process.env.DATA_PHOTOS_PATH);  
 
 // Routes
 
-photosRouter.get('/public/:photoFileName', (req, res) => {
+photosRouter.get('/:photoFileName', (req, res) => {
     try {
         const photoPath = `${process.env.PROJECT_PATH}/public/images/${req.params.photoFileName}`;
         res.sendFile(photoPath);
@@ -92,7 +92,7 @@ photosRouter.post('/:photoId/comments', (req, res) => {
 
         photo.comments.push(comment);
         photos[photoIndex] = photo;
-        savePhotosJson('./data/photos.json');
+        savePhotosJson(process.env.DATA_PHOTOS_PATH);
 
         res.status(201).send(comment);
     } catch (error) {

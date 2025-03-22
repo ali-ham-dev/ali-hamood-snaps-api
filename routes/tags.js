@@ -10,7 +10,7 @@ const getTags = async (filePath) => {
 }
 
 const tagsRouter = express.Router();
-const tags = await getTags('./data/tags.json');
+const tags = await getTags(process.env.DATA_TAGS_PATH);
 
 tagsRouter.get('/', (req, res) => {
     if (tags == null) {
