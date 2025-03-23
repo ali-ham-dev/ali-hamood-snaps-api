@@ -3,3 +3,5 @@
 
 # Files
 *.DS_Store
+
+.env
