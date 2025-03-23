@@ -24,9 +24,9 @@ const photos = await getPhotosJson(process.env.DATA_PHOTOS_PATH);
 
 // Routes
 
-photosRouter.get('/:photoFileName', (req, res) => {
+photosRouter.get('/public/:photoFileName', (req, res) => {
     try {
-        const photoPath = `${process.env.PROJECT_PATH}/public/images/${req.params.photoFileName}`;
+        const photoPath = `${process.env.PWD}/public/images/${req.params.photoFileName}`;
         res.sendFile(photoPath);
     } catch (error) {
         console.log(error.message);

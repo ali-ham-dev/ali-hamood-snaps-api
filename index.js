@@ -11,7 +11,7 @@ const apiAuth = (req, res, next) => {
     if (apiKeyIndex !== -1) {
         req.url = url.slice(0, apiKeyIndex - 1);
     }
-    
+
     next();
 };
 
@@ -26,7 +26,6 @@ app.use('/photos', photosRouter);
 const PORT = process.env.PORT || 5051;
 
 app.listen(PORT, () => {
-    process.env.SERVER_PATH = process.cwd();
     console.log(`Server listening on http://localhost:${PORT}`);
     console.log('Press Ctrl+C to stop the server');
 });
