@@ -1,10 +1,29 @@
+import 'dotenv/config.js';
 import express from 'express';
 import tagsRouter from './routes/tags.js';
+import photosRouter from './routes/photos.js';
+import cors from 'cors';
+
+const apiAuth = (req, res, next) => {
+    const url = req.url;
+    const apiKeyIndex = url.lastIndexOf('?');
+
+    if (apiKeyIndex !== -1) {
+        req.url = url.slice(0, apiKeyIndex - 1);
+    }
+
+    next();
+};
 
 const app = express();
-app.use('/tags', tagsRouter);
+app.use(express.json());
+app.use(cors({origin: process.env.CORS_ORIGIN}));
+app.use(apiAuth);
 
-const PORT = 8080;
+app.use('/tags', tagsRouter);
+app.use('/photos', photosRouter);
+
+const PORT = process.env.PORT || 5051;
 
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
